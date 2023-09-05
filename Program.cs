@@ -13,7 +13,7 @@ namespace Covid19ProjectAPI
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionStr = builder.Configuration.GetConnectionString("sqlConnectionStr");
-
+            
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -24,6 +24,7 @@ namespace Covid19ProjectAPI
             builder.Services.AddTransient<IRegisterService, RegisterService>();
             builder.Services.AddTransient<ILoginInterface, LoginService>();
             builder.Services.AddTransient<IwishListInterface, WishListService>();
+            builder.Services.AddScoped<IEmailSender,EmailService>();
             //Configuring 
             builder.Services.AddCors(c =>c.AddPolicy("AllowOrigin",options=>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
            //configuring connection String

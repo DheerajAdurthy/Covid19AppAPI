@@ -67,3 +67,9 @@ C:\Users\dadurthi\source\repos\Covid19ProjectAPI\obj\Debug\net6.0\refint\Covid19
 C:\Users\dadurthi\source\repos\Covid19ProjectAPI\obj\Debug\net6.0\Covid19ProjectAPI.pdb
 C:\Users\dadurthi\source\repos\Covid19ProjectAPI\obj\Debug\net6.0\Covid19ProjectAPI.genruntimeconfig.cache
 C:\Users\dadurthi\source\repos\Covid19ProjectAPI\obj\Debug\net6.0\ref\Covid19ProjectAPI.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\Mailjet.Client.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\MailKit.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\MimeKit.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\NETCore.MailKit.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\dadurthi\source\repos\Covid19ProjectAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll

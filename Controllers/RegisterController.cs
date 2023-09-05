@@ -3,6 +3,7 @@ using Covid19ProjectAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,10 +16,8 @@ namespace Covid19ProjectAPI.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        
         private readonly IRegisterService registerService;
         private readonly ILoginInterface loginService;
-
         public RegisterController(ILoginInterface loginService, IRegisterService registerService)
         {
             this.registerService = registerService;
@@ -90,7 +89,7 @@ namespace Covid19ProjectAPI.Controllers
             try
             {
                 loginService.VerifyLogOut(Id);
-                return StatusCode(200, Id);
+                return StatusCode(200, new JsonResult(Id));
             }
             catch (Exception) { throw; }
         }

@@ -1,4 +1,5 @@
 ﻿using Covid19ProjectAPI.Entities;
+using Covid19ProjectAPI.Helpers;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,8 +23,9 @@ namespace Covid19ProjectAPI.Services
         {
             try
             {
-                RegisterUser newUser=this.registerDBContext.registerUsers.SingleOrDefault(x=>x.userName==user.userName && x.password==user.password);
-                if(newUser != null)
+                RegisterUser newUser=this.registerDBContext.registerUsers.SingleOrDefault(x=>x.userName==user.userName);
+                bool isUserValid=PasswordHasher.VerifyPassword(user.password,newUser.password);
+                if(newUser != null && isUserValid)
                 {
                     string Jwt = getToken(newUser);
                     ResponseBody response = new ResponseBody() { userId="user"+newUser.registerId,userName = newUser.userName, token = Jwt,role = newUser.role };
@@ -36,7 +38,6 @@ namespace Covid19ProjectAPI.Services
                     if (registerDBContext.users.Find(loggedInUser.userId) == null)
                     {
                         registerDBContext.users.Add(loggedInUser);
-                        registerDBContext.loginUsers.Add(userLogin);
                         registerDBContext.SaveChanges();
                     }
                     return response;
@@ -47,7 +48,7 @@ namespace Covid19ProjectAPI.Services
         }
 
 
-        private string getToken(RegisterUser? user)
+        public string getToken(RegisterUser? user)
         {
             var issuer = configuration["Jwt:Issuer"];
             var audience = configuration["Jwt:Audience"];
@@ -61,14 +62,11 @@ namespace Covid19ProjectAPI.Services
             {
                         new Claim(ClaimTypes.Name,user.userName),
                         new Claim(ClaimTypes.Role, user.password),
-                    });
-
-            var expires = DateTime.UtcNow.AddMinutes(10);
-
+            });
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = subject,
-                Expires = expires,
+                Expires = DateTime.UtcNow.AddDays(1),
                 Issuer = issuer,
                 Audience = audience,
                 SigningCredentials = signingCredentials

@@ -5,5 +5,7 @@ namespace Covid19ProjectAPI.Services
     public interface IRegisterService
     {
         public RegisterUser RegisterUser(RegisterUser user);
+
+        public RegisterUser ConfirmUser(string email);
     }
 }

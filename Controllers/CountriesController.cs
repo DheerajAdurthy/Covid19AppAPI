@@ -77,6 +77,8 @@ namespace Covid19ProjectAPI.Controllers
         }
 
 
+
+
         [HttpGet,Route("GetAllCountries")]
 
         public IActionResult GetAllCountries()
@@ -115,7 +117,6 @@ namespace Covid19ProjectAPI.Controllers
             catch (Exception) { throw; }
         }
 
-
         [HttpGet,Route("GetCasesByCountryId/{countryId}")]
 
         public IActionResult GetCasesByCountryId(string countryId)
@@ -127,7 +128,7 @@ namespace Covid19ProjectAPI.Controllers
                 {
                     return StatusCode(200, cities);
                 }
-                return StatusCode(400, "No cases exists in Cities for given countryId");
+                return StatusCode(400, "No cases exists in Cities for given countryName");
             }
             catch (Exception) { throw; }
         }

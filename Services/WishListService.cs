@@ -36,7 +36,7 @@ namespace Covid19ProjectAPI.Services
         {
             try
             {
-                LoginUserWishList user = _dbContext.loginUsers.FirstOrDefault(x=>x.userId==userId);
+                Users user = _dbContext.users.FirstOrDefault(x=>x.userId==userId);
                 if (user != null)
                 {
                     List<WishListResponseDTO> resDTO =(from wishes in _dbContext.usersWishlist

@@ -7,5 +7,8 @@ namespace Covid19ProjectAPI.Services
         public ResponseBody VerifyUser(LoginUser user);
 
         public void VerifyLogOut(string userId);
+
+        public string getToken(RegisterUser user);
+
     }
 }
